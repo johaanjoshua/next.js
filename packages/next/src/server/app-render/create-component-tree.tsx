@@ -342,6 +342,17 @@ async function createComponentTreeInternal({
     if (typeof NotFound !== 'undefined' && !isValidElementType(NotFound)) {
       errorMissingDefaultExport(pagePath, 'not-found')
     }
+
+    if (typeof Forbidden !== 'undefined' && !isValidElementType(Forbidden)) {
+      errorMissingDefaultExport(pagePath, 'forbidden')
+    }
+
+    if (
+      typeof Unauthorized !== 'undefined' &&
+      !isValidElementType(Unauthorized)
+    ) {
+      errorMissingDefaultExport(pagePath, 'unauthorized')
+    }
   }
 
   // Handle dynamic segment params.
@@ -794,28 +805,6 @@ async function createComponentTreeInternal({
                   <SegmentComponent params={params}>
                     {notFoundStyles}
                     <NotFound />
-                  </SegmentComponent>
-                </>
-              ) : undefined
-            }
-            forbidden={
-              Forbidden ? (
-                <>
-                  {layerAssets}
-                  <SegmentComponent params={params}>
-                    {forbiddenStyles}
-                    <Forbidden />
-                  </SegmentComponent>
-                </>
-              ) : undefined
-            }
-            unauthorized={
-              Unauthorized ? (
-                <>
-                  {layerAssets}
-                  <SegmentComponent params={params}>
-                    {unauthorizedStyles}
-                    <Unauthorized />
                   </SegmentComponent>
                 </>
               ) : undefined
