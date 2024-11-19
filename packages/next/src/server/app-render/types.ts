@@ -182,6 +182,7 @@ export interface RenderOptsPartial {
     clientTraceMetadata: string[] | undefined
     after: boolean
     dynamicIO: boolean
+    navigationDeniedApi: boolean
   }
   postponed?: string
 

@@ -3,7 +3,7 @@
  */
 const nextConfig = {
   experimental: {
-    navigationApi: true,
+    navigationDeniedApi: true,
   },
 }
 

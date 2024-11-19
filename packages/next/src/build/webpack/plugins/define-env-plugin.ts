@@ -277,7 +277,7 @@ export function getDefineEnv({
       (config.experimental as any).internal_disableSyncDynamicAPIWarnings ??
       false,
     'process.env.__NEXT_EXPERIMENTAL_NAVIGATION_API':
-      !!config.experimental.navigationApi,
+      !!config.experimental.navigationDeniedApi,
     ...(isNodeOrEdgeCompilation
       ? {
           // Fix bad-actors in the npm ecosystem (e.g. `node-formidable`)

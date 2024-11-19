@@ -39,6 +39,7 @@ export function createComponentTree(props: {
   ctx: AppRenderContext
   missingSlots?: Set<string>
   preloadCallbacks: PreloadCallbacks
+  navigationDeniedApi: boolean
 }): Promise<CacheNodeSeedData> {
   return getTracer().trace(
     NextNodeServerSpan.createComponentTree,
@@ -74,6 +75,7 @@ async function createComponentTreeInternal({
   ctx,
   missingSlots,
   preloadCallbacks,
+  navigationDeniedApi,
 }: {
   createSegmentPath: CreateSegmentPath
   loaderTree: LoaderTree
@@ -87,6 +89,7 @@ async function createComponentTreeInternal({
   ctx: AppRenderContext
   missingSlots?: Set<string>
   preloadCallbacks: PreloadCallbacks
+  navigationDeniedApi: boolean
 }): Promise<CacheNodeSeedData> {
   const {
     renderOpts: { nextConfigOutput, experimental },
@@ -204,7 +207,7 @@ async function createComponentTreeInternal({
     : []
 
   const [Forbidden, forbiddenStyles] =
-    process.env.__NEXT_EXPERIMENTAL_NAVIGATION_API && forbidden
+    navigationDeniedApi && forbidden
       ? await createComponentStylesAndScripts({
           ctx,
           filePath: forbidden[1],
@@ -221,7 +224,7 @@ async function createComponentTreeInternal({
   ) : undefined
 
   const [Unauthorized, unauthorizedStyles] =
-    process.env.__NEXT_EXPERIMENTAL_NAVIGATION_API && unauthorized
+    navigationDeniedApi && unauthorized
       ? await createComponentStylesAndScripts({
           ctx,
           filePath: unauthorized[1],
@@ -487,6 +490,7 @@ async function createComponentTreeInternal({
             ctx,
             missingSlots,
             preloadCallbacks,
+            navigationDeniedApi,
           })
 
           childCacheNodeSeedData = seedData

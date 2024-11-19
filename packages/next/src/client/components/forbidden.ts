@@ -22,7 +22,7 @@ import {
 export function forbidden(): never {
   if (!process.env.__NEXT_EXPERIMENTAL_NAVIGATION_API) {
     throw new Error(
-      `\`forbidden()\` is experimental and only allowed to be enabled when \`experimental.navigationApi\` is enabled.`
+      `\`forbidden()\` is experimental and only allowed to be enabled when \`experimental.navigationDeniedApi\` is enabled.`
     )
   }
 

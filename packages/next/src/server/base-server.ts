@@ -593,6 +593,7 @@ export default abstract class Server<
         clientTraceMetadata: this.nextConfig.experimental.clientTraceMetadata,
         after: this.nextConfig.experimental.after ?? false,
         dynamicIO: this.nextConfig.experimental.dynamicIO ?? false,
+        navigationDeniedApi: !!this.nextConfig.experimental.navigationDeniedApi,
       },
       onInstrumentationRequestError:
         this.instrumentationOnRequestError.bind(this),
@@ -2480,6 +2481,8 @@ export default abstract class Server<
               experimental: {
                 after: renderOpts.experimental.after,
                 dynamicIO: renderOpts.experimental.dynamicIO,
+                navigationDeniedApi:
+                  renderOpts.experimental.navigationDeniedApi,
               },
               supportsDynamicResponse,
               incrementalCache,

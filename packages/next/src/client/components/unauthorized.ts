@@ -22,7 +22,7 @@ import {
 export function unauthorized(): never {
   if (!process.env.__NEXT_EXPERIMENTAL_NAVIGATION_API) {
     throw new Error(
-      `\`unauthorized()\` is experimental and only allowed to be used when \`experimental.navigationApi\` is enabled.`
+      `\`unauthorized()\` is experimental and only allowed to be used when \`experimental.navigationDeniedApi\` is enabled.`
     )
   }
 
