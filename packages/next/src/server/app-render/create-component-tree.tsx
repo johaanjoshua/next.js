@@ -203,25 +203,39 @@ async function createComponentTreeInternal({
       })
     : []
 
-  const [Forbidden, forbiddenStyles] = forbidden
-    ? await createComponentStylesAndScripts({
-        ctx,
-        filePath: forbidden[1],
-        getComponent: forbidden[0],
-        injectedCSS: injectedCSSWithCurrentLayout,
-        injectedJS: injectedJSWithCurrentLayout,
-      })
-    : []
+  const [Forbidden, forbiddenStyles] =
+    process.env.__NEXT_EXPERIMENTAL_NAVIGATION_API && forbidden
+      ? await createComponentStylesAndScripts({
+          ctx,
+          filePath: forbidden[1],
+          getComponent: forbidden[0],
+          injectedCSS: injectedCSSWithCurrentLayout,
+          injectedJS: injectedJSWithCurrentLayout,
+        })
+      : []
+  const forbiddenElement = Forbidden ? (
+    <>
+      {forbiddenStyles}
+      <Forbidden />
+    </>
+  ) : undefined
 
-  const [Unauthorized, unauthorizedStyles] = unauthorized
-    ? await createComponentStylesAndScripts({
-        ctx,
-        filePath: unauthorized[1],
-        getComponent: unauthorized[0],
-        injectedCSS: injectedCSSWithCurrentLayout,
-        injectedJS: injectedJSWithCurrentLayout,
-      })
-    : []
+  const [Unauthorized, unauthorizedStyles] =
+    process.env.__NEXT_EXPERIMENTAL_NAVIGATION_API && unauthorized
+      ? await createComponentStylesAndScripts({
+          ctx,
+          filePath: unauthorized[1],
+          getComponent: unauthorized[0],
+          injectedCSS: injectedCSSWithCurrentLayout,
+          injectedJS: injectedJSWithCurrentLayout,
+        })
+      : []
+  const unauthorizedElement = Unauthorized ? (
+    <>
+      {unauthorizedStyles}
+      <Unauthorized />
+    </>
+  ) : undefined
 
   let dynamic = layoutOrPageMod?.dynamic
 
@@ -393,21 +407,13 @@ async function createComponentTreeInternal({
             </>
           ) : undefined
 
-        const forbiddenComponent =
-          Forbidden && isChildrenRouteKey ? (
-            <>
-              {forbiddenStyles}
-              <Forbidden />
-            </>
-          ) : undefined
+        const forbiddenComponent = isChildrenRouteKey
+          ? forbiddenElement
+          : undefined
 
-        const unauthorizedComponent =
-          Unauthorized && isChildrenRouteKey ? (
-            <>
-              {unauthorizedStyles}
-              <Unauthorized />
-            </>
-          ) : undefined
+        const unauthorizedComponent = isChildrenRouteKey
+          ? unauthorizedElement
+          : undefined
 
         // if we're prefetching and that there's a Loading component, we bail out
         // otherwise we keep rendering for the prefetch.
@@ -709,12 +715,7 @@ async function createComponentTreeInternal({
         }
         if (Forbidden) {
           const forbiddenParallelRouteProps = {
-            children: (
-              <>
-                {forbiddenStyles}
-                <Forbidden />
-              </>
-            ),
+            children: forbiddenElement,
           }
           forbiddenClientSegment = (
             <>
@@ -729,12 +730,7 @@ async function createComponentTreeInternal({
         }
         if (Unauthorized) {
           const unauthorizedParallelRouteProps = {
-            children: (
-              <>
-                {unauthorizedStyles}
-                <Unauthorized />
-              </>
-            ),
+            children: unauthorizedElement,
           }
           unauthorizedClientSegment = (
             <>

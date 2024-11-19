@@ -556,6 +556,12 @@ export interface ExperimentalConfig {
    * unless explicitly cached.
    */
   dynamicIO?: boolean
+
+  // TODO: Remove this config when the API is stable.
+  /**
+   * This config allows you to enable the experimental navigation API `forbidden` and `unauthorized`.
+   */
+  navigationApi?: boolean
 }
 
 export type ExportPathMap = {
@@ -1143,6 +1149,7 @@ export const defaultConfig: NextConfig = {
         process.env.__NEXT_TEST_MODE &&
         process.env.__NEXT_EXPERIMENTAL_PPR === 'true'
       ),
+    navigationApi: false,
     reactOwnerStack: false,
     webpackBuildWorker: undefined,
     webpackMemoryOptimizations: false,
