@@ -1,0 +1,4 @@
+Issues with login to Vercel at https://vercel.com/login. Created account at GitHub and login freezes. Same with https://v0.dev/ which directs to vercel to verify GitHub. Decided
+to fuc-ing fork this file named login.txt to johaanjoshua/next.js noting my troubles and to try again later when I will be more awake and do a better job at pretending to know
+what the hell I am doing at any given moment. In the meantime, please be aware that I am highly disturbed at this turn of events that pickabrain.ai whose IP is Vercel <or so the
+geolocation would seem to indicate> has unleashed upon my burdened and weary soul--ummm...yeah, right. That should work.
