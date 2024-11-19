@@ -1,0 +1,7 @@
+It occurs to me that as I am not a jester, that the following two files should be re-named.
+...jest.config.js and
+...jest.replay.config.js
+In the spirit of fairness for all jokers everywhere the proposed new names should be obvious but just in case
+...Joker.config.js and
+...Joker.replay.config.js are the proposed new names and it is my hope that those maintaining the vercel/next.js open 
+source code will give due consideration to this change.
