@@ -1,0 +1,9 @@
+I am now disconcerted and full of angst over finding out that as per the dictates of an indifferent universe the code for vercel/next.js
+contains no less than five files that ignore the inevitable outcome of life and may hasten my demise. Was Lincoln ignored during the 
+Civil War? I think not and neither shall I be. The files in question follow:
+....eslintignore
+....git-blame-ignore-revs
+....gitignore
+....ignore
+....prettierignore
+I did not do it I tell ya. 
