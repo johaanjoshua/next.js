@@ -445,8 +445,8 @@ describe('Error overlay for hydration errors in App router', () => {
                 <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
                   <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
                     <LoadingBoundary hasLoading={false} loading={undefined} loadingStyles={undefined} loadingScripts={undefined}>
-                      <HTTPAccessFallbackBoundary notFound={[...]} forbidden={[...]} unauthorized={[...]}>
-                        <HTTPAccessFallbackErrorBoundary pathname="/" notFound={[...]} forbidden={[...]} unauthorized={[...]} ...>
+                      <HTTPAccessFallbackBoundary notFound={[...]} forbidden={undefined} unauthorized={undefined}>
+                        <HTTPAccessFallbackErrorBoundary pathname="/" notFound={[...]} forbidden={undefined} ...>
                           <RedirectBoundary>
                             <RedirectErrorBoundary router={{...}}>
                               <InnerLayoutRouter parallelRouterKey="children" url="/" tree={[...]} childNodes={Map} ...>
@@ -931,7 +931,7 @@ describe('Error overlay for hydration errors in App router', () => {
     if (isTurbopack) {
       expect(fullPseudoHtml).toMatchInlineSnapshot(`
         "...
-          <HTTPAccessFallbackErrorBoundary pathname="/" notFound={[...]} forbidden={[...]} unauthorized={[...]} ...>
+          <HTTPAccessFallbackErrorBoundary pathname="/" notFound={[...]} forbidden={undefined} unauthorized={undefined} ...>
             <RedirectBoundary>
               <RedirectErrorBoundary router={{...}}>
                 <InnerLayoutRouter parallelRouterKey="children" url="/" tree={[...]} childNodes={Map} segmentPath={[...]} ...>
